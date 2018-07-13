@@ -1,0 +1,159 @@
+page{
+  background-color: #F9F9F9; 
+  font-size: 16px;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif; 
+  height: 100%;
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.userinfo-input{
+  border: 1rpx solid #9b9b9b;
+  border-right: none;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  padding-left: 20rpx; 
+  font-size: 12px;
+  color: #2b2b2b;
+  height: 60rpx;
+  width: 150rpx;
+}
+.userinfo-unit{
+  border: 1rpx solid #2b2b2b;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  height: 60rpx;
+  width: 60rpx;
+  background: #2b2b2b;
+  font-size: 12px;
+  text-align: center;
+}
+.gendericon{
+  width: 35rpx;
+  height: 35rpx;
+}
+.subtitle-container{
+  width: 100%;
+  margin-top: 50px;
+  line-height: 60rpx;
+  position: relative;
+}
+.dashed-line{
+  height: 0;
+  width: 100%;
+  border-top: 1rpx dashed #9b9b9b;
+}
+.subtitle{
+  position: absolute;
+  top: -13px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.subtitle text{
+  font-size: 14px;
+  color: #9b9b9b;
+  padding: 0 30rpx;
+  text-align: center;
+  background-color: #F9F9F9;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userinfo-container{
+  display: flex;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-top: 30px;
+}
+.flex-row-center-center{
+  display: flex;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flex-row-start-start{
+  display: flex;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.flex-row-between-center{
+  display: flex;
+  flex-direction: row;
+  -ms-flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.note-text{
+  margin-top: 10px;
+  font-size: 10px;
+  color: #9b9b9b;
+  text-align: center;
+}
+.cam-container{
+  margin-top: 30px;
+}
+.ylt-c-white{
+  color: white;
+}
+.privacy-container{
+  margin-top: 5px;
+}
+.checkbox{
+  transform: scale(0.6,0.6);
+}
+.checkbox-text{
+  font-size: 10px;
+  color: #9b9b9b;
+}
+.btn-container{
+  margin-top: 50px;
+}
+
+.measure-img-container{
+  width: 50%;
+  height: 400rpx;
+}
+.prev-img{
+  width: 100%;
+  height: 100%;
+  border: 1rpx solid #9b9b9b;
+}
+.camera-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.tutorial-btns{
+  width: 240rpx;
+  text-align: center;
+  font-size: 16px;
+}
+
+.errMsg-sector{
+  margin-top: 15px;
+  width: 100%;
+}
+.errMsg-container{
+  margin: 15px;
+  padding: 5px;
+  color: orangered;
+  text-align: start;
+  border: 1px dashed orangered;
+}
+.errMsg-title{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.errMsg-text{
+  font-size: 10px;
+}

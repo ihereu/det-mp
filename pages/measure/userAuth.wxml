@@ -1,0 +1,5 @@
+<view class="page">
+  <view class='title'>需要您的授权才能使用哦！</view>
+  <view class='subtitle'>请放心，在任何情况下我们都不会获取您的微信好友或朋友圈等任何敏感信息。</view>
+  <button class='auth-btn' type='primary' bindtap='userAuth'>立即授权</button>
+</view>

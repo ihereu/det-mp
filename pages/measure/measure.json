@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ylt-camera": "plugin://yltplugin/camera",
+    "ylt-tutorial": "plugin://yltplugin/tutorial"
+  }
+}

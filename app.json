@@ -1,13 +1,21 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/uat/uat"
+    "pages/uat/uat",
+    "pages/measure/userAuth",
+    "pages/measure/measure"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "十如仕微商城",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "plugins": {
+    "yltplugin": {
+      "version": "1.0.2",
+      "provider": "wx77697d146946fb36"
+    }
   }
 }

@@ -1,0 +1,108 @@
+<view class="page" wx:if="{{!camOn&&!tutorialOn&&!privacyOn}}">
+  <!--输入性别、身高、体重  -->
+  <view class='subtitle-container'>
+    <view class='dashed-line'></view>
+    <view class='subtitle'>
+      <text>步骤一：输入基本信息</text>
+    </view>
+  </view>
+
+  <!--性别、身高、体重  -->
+  <view class='userinfo-container'>
+    <view class=''>
+      <picker value="{{userGender}}" range="{{genderList}}">
+        <view class='flex-row-center-center'>
+          <view class="userinfo-input flex-row-center-center" style='width:80rpx;'>
+            {{genderList[0]}}
+          </view>
+          <view class='userinfo-unit flex-row-center-center'>
+            <image class='gendericon' src="{{userGender==1?'../../assets/img/male.png':'../../assets/img/female.png'}}" mode='aspectFit'></image>
+          </view>
+        </view>
+        
+      </picker>
+    </view>
+    
+    <view class='flex-row-start-start'>
+      <input class='userinfo-input' type='number' value="{{userHeight>0?userHeight:''}}" placeholder='净身高' bindblur='updateInfo' id='userheight'></input>
+      <view class='userinfo-unit flex-row-center-center'>
+        <text class='ylt-c-white'>CM</text>
+      </view>
+    </view>
+
+    <view class='flex-row-start-start'>
+      <input class='userinfo-input' type='number' value="{{userWeight>0?userWeight:''}}" placeholder='净体重' placeholder-class='userinfo-placeholder' bindblur='updateInfo' id='userweight'></input>
+      <view class='userinfo-unit flex-row-center-center'>
+        <text class='ylt-c-white'>KG</text>
+      </view>
+    </view>
+  </view>
+
+  <!--提示语  -->
+  <view class='note-text'>
+    为了确保量体数据精准，请准确输入您的净身高、净体重
+  </view>
+
+  <view class='subtitle-container'>
+    <view class='dashed-line'></view>
+    <view class='subtitle'>
+      <text>步骤二：拍摄正、侧面照片</text>
+    </view>
+  </view>
+
+  <!--相机框  -->
+  <view class='cam-container flex-row-between-center'>
+    <view class='measure-img-container' bindtap='cameraActivate' data-imgdir="front">
+      <image class='prev-img' src="{{frontImgSrc!=''?frontImgSrc:frontPoseSrc}}" mode='aspectFit'></image>
+    </view>
+    <view class='measure-img-container' bindtap='cameraActivate' data-imgdir="side">
+      <image class='prev-img' src="{{sideImgSrc!=''?sideImgSrc:sidePoseSrc}}" mode='aspectFit'></image>
+    </view>
+  </view>  
+  
+  <!--错误提示语  -->
+  <view class='errMsg-sector'>
+    <view class='errMsg-container' wx:if="{{errMsgList.length>0}}">
+      <view class='errMsg-title'>错误提示</view>
+      <block wx:for="{{errMsgList}}" wx:key="id">
+        <view class='errMsg-text'>{{item.text}}</view>
+      </block>
+    </view>
+  </view>
+
+  <!--按钮  -->
+  <view class='btn-container flex-row-between-center'>
+    <button class='tutorial-btns' bindtap='navToTutorial'>量体教程</button>
+    <button class='tutorial-btns' type='primary' bindtap='navToNext' disabled="{{!checkboxStatus}}" style='background:#4CD964;'>下一步</button>
+  </view>
+
+  <!--用户条款  -->
+  <view class='privacy-container flex-row-center-center'>
+    <view class='flex-row-center-center'>
+      <view>
+        <checkbox class='checkbox' checked="{{checkboxStatus}}" bindtap="checkboxChange" data-status="{{checkboxStatus}}"/>
+      </view>
+      <view>
+        <text class='checkbox-text' bindtap='navToPrivacy'>点击下一步默认同意<text>《用户条款》</text>
+    </text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!--相机SDK  -->
+<block wx:for="{{camList}}" wx:key="dir">
+  <view class='camera-container'>
+    <ylt-camera bindclosecam="closecam" bindgetphoto="getPhoto" camdir="{{item.dir}}" />
+  </view>
+</block>
+
+<!--教程SDK  -->
+<block wx:for="{{tutorialList}}" wx:key="id">
+  <view class='tutorial-container'>
+    <ylt-tutorial bindclosetutorial="closeTutorial" />
+  </view>
+</block>
+

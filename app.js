@@ -32,7 +32,53 @@ App({
         }
       }
     })
+
+
+    //detect SDK Version
+    var that = this;
+    try {
+      var sysInfo = wx.getSystemInfoSync();
+    } catch (e) {
+      console.log(e);
+    }
+    if (that.compareVersion(sysInfo.SDKVersion, '1.9.6') < 0) {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
+
+
+
   },
+
+  compareVersion: function (v1, v2) {
+    v1 = v1.split('.')
+    v2 = v2.split('.')
+    var len = Math.max(v1.length, v2.length)
+
+    while (v1.length < len) {
+      v1.push('0')
+    }
+    while (v2.length < len) {
+      v2.push('0')
+    }
+
+    for (var i = 0; i < len; i++) {
+      var num1 = parseInt(v1[i])
+      var num2 = parseInt(v2[i])
+
+      if (num1 > num2) {
+        return 1
+      } else if (num1 < num2) {
+        return -1
+      }
+    }
+
+    return 0
+  },
+
+
   globalData: {
     userInfo: null
   }
