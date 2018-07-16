@@ -1,8 +1,8 @@
 var yltplugin = requirePlugin("yltplugin")
 Page({
   data: {
-    corpId: 'o4x04hy3zljghf7oa4',   //provided by client through URL parameter
-    userId: '-1',  //provided by client through URL parameter
+    corpId: 'o4x04hy3zljghf7oa4', //provided by client through URL parameter
+    userId: '-1', //provided by client through URL parameter
     genderList: ['DET Male'],
     userGender: 1,
     userHeight: 160,
@@ -19,7 +19,7 @@ Page({
     sideImgSrc: '',
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     wx.hideLoading();
     wx.showLoading({
@@ -71,16 +71,18 @@ Page({
 
 
     wx.login({
-      success: function (res) {
+      success: function(res) {
         if (res.code) {
           wx.getUserInfo({
             withCredentials: true,
-            success: function (res_info) {
+            success: function(res_info) {
               // console.log(res_info)
-              that.setData({ userInfo: res_info.userInfo });
+              that.setData({
+                userInfo: res_info.userInfo
+              });
               wx.hideLoading();
             },
-            fail: function (e) {
+            fail: function(e) {
               wx.hideLoading();
               wx.redirectTo({
                 url: './userAuth?src=measure',
@@ -96,7 +98,7 @@ Page({
           });
         }
       },
-      fail: function (e) {
+      fail: function(e) {
         wx.hideLoading();
         wx.showToast({
           title: '网络错误-101',
@@ -107,32 +109,34 @@ Page({
     });
   },
 
-  onReady: function () {
-  },
+  onReady: function() {},
 
-  cameraActivate: function (e) {
+  cameraActivate: function(e) {
     var that = this;
     if (e.currentTarget.dataset.imgdir == 'front') {
       wx.showActionSheet({
         itemList: ['拍摄正面照片'],
-        success: function (res) {
+        success: function(res) {
           if (res.tapIndex == 0) {
             that.setData({
               camOn: true,
-              camList: [{ 'dir': 'front' }]
+              camList: [{
+                'dir': 'front'
+              }]
             });
           }
         },
       })
-    }
-    else if (e.currentTarget.dataset.imgdir == 'side') {
+    } else if (e.currentTarget.dataset.imgdir == 'side') {
       wx.showActionSheet({
         itemList: ['拍摄侧面照片'],
-        success: function (res) {
+        success: function(res) {
           if (res.tapIndex == 0) {
             that.setData({
               camOn: true,
-              camList: [{ 'dir': 'side' }]
+              camList: [{
+                'dir': 'side'
+              }]
             });
           }
         },
@@ -140,7 +144,7 @@ Page({
     }
   },
 
-  getPhoto: function (e) {
+  getPhoto: function(e) {
     var that = this;
     console.log(e.detail);
     that.setData({
@@ -165,7 +169,7 @@ Page({
 
   },
 
-  closecam: function (e) {
+  closecam: function(e) {
     var that = this;
     // console.log(e.detail);
     that.setData({
@@ -174,16 +178,20 @@ Page({
     });
   },
 
-  updateInfo: function (e) {
+  updateInfo: function(e) {
     var that = this;
     if (e.currentTarget.id == 'userheight' && e.detail.value) {
-      that.setData({ userHeight: e.detail.value * 1 })
+      that.setData({
+        userHeight: e.detail.value * 1
+      })
     } else if (e.currentTarget.id == 'userweight' && e.detail.value) {
-      that.setData({ userWeight: e.detail.value * 1 })
+      that.setData({
+        userWeight: e.detail.value * 1
+      })
     }
   },
 
-  navToNext: function () {
+  navToNext: function() {
     // corpId: String, 
     // userId: String, 
     // userInfo: Object, 
@@ -203,25 +211,33 @@ Page({
     that.setData({
       userId: that.data.userInfo.nickName.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")
     });
-    yltplugin.getMeasurements(that.data.corpId, that.data.userId, that.data.userInfo, that.data.userGender, that.data.userHeight, that.data.userWeight, that.data.frontImgSrc, that.data.sideImgSrc).then(function (res) {
+    yltplugin.getMeasurements(that.data.corpId, that.data.userId, that.data.userInfo, that.data.userGender, that.data.userHeight, that.data.userWeight, that.data.frontImgSrc, that.data.sideImgSrc).then(function(res) {
       wx.hideLoading();
 
       console.log(res)
 
-      console.log(res.data.data[0]);
+      //console.log(res.data.data[0][0]);
 
       if (res.code == 0) {
 
-        // wx.showModal({
-        //   title: 'Result',
-        //   content: res.data.data[0].Intro_Wechat,
-        // })
+        if (res.msg === "WARNING") {
+          //Show Warning
+          wx.showModal({
+            title: 'Result with Warnings',
+            content: res.data.data[0][0].Intro_Wechat,
+          });
+        } else {
+          wx.showModal({
+            title: '量体成功',
+            content: JSON.stringify(res)
+          });
+          // wx.showToast({
+          //   title: '量体成功' + JSON.stringify(res.data),
+          //   icon: 'success',
+          //   duration: 1500,
+          // });
+        }
 
-        wx.showToast({
-          title: '量体成功',
-          icon: 'success',
-          duration: 1500,
-        });
       } else {
         var tmpErrMsgList = [];
         for (var i = 0; i < res.data.data.length; i++) {
@@ -242,7 +258,7 @@ Page({
           duration: 1000,
         });
       }
-    }).catch(function (err) {
+    }).catch(function(err) {
       wx.hideLoading();
       console.log(err);
       that.setData({
@@ -257,15 +273,17 @@ Page({
   },
 
 
-  navToTutorial: function () {
+  navToTutorial: function() {
     var that = this;
     that.setData({
       tutorialOn: true,
-      tutorialList: [{ id: 1 }]
+      tutorialList: [{
+        id: 1
+      }]
     });
   },
 
-  closeTutorial: function () {
+  closeTutorial: function() {
     var that = this;
     that.setData({
       tutorialOn: false,
@@ -273,21 +291,21 @@ Page({
     });
   },
 
-  navToPrivacy: function (e) {
+  navToPrivacy: function(e) {
     console.log('e');
     wx.navigateTo({
       url: '../yltprivacy/privacy',
     });
   },
 
-  checkboxChange: function (e) {
+  checkboxChange: function(e) {
     var that = this;
     that.setData({
       checkboxStatus: !e.currentTarget.dataset.status
     });
   },
 
-  compareVersion: function (v1, v2) {
+  compareVersion: function(v1, v2) {
     v1 = v1.split('.')
     v2 = v2.split('.')
     var len = Math.max(v1.length, v2.length)

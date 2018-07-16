@@ -29,14 +29,7 @@ Page({
 
   },
 
-
-// <img src="https://asset.detshirts.com/static/img/v2/KV-1.jpg" />
-
-
   onLoad: function () {
-
-   
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
