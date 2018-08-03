@@ -18,10 +18,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log(options);
+
     wx.getSetting({
       success: (res) => {
         console.log(res);
-        
           that.setData({ authSrc: 'measure' });
           console.log('test')
           if (res.authSetting['scope.userInfo']) {
@@ -93,6 +93,8 @@ Page({
 
   userAuth: function (e) {
     var that = this;
+
+
     wx.openSetting({
       success: (res) => {
         if (that.data.authSrc == 'measure') {
