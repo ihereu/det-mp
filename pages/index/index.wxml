@@ -3,19 +3,27 @@
   <view class="bg">
     <image class='shirtImage' src="../../assets/img/KV-1.jpg" />
   </view>
-
+ 
   <view class="container2">
 
-    <view class="button btn" bindtap="bindViewUAT">
-      DET 商城
+    <view class="button btn">
+      <navigator url="/pages/uat/uat" hover-class="navigator-hover">DET 商城</navigator>
     </view>
 
     <view class="button btn" bindtap="bodyMeasure">
-      量度尺碼
+      <navigator url="/pages/measure/userAuth" hover-class="navigator-hover"> 量度尺碼</navigator>
     </view>
   </view>
 
+  <view class="button btn" bindtap="webViewTesting">
+    Web View 測試
+  </view>
+
+  <view class="button btn" bindtap="bindTesting">
+    Testing
+  </view>
+
   <view class="version">
-    版本: 0.2.3
+    版本: 0.2.4
   </view>
 </view>

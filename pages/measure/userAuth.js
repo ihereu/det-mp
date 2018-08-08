@@ -25,9 +25,17 @@ Page({
           that.setData({ authSrc: 'measure' });
           console.log('test')
           if (res.authSetting['scope.userInfo']) {
+
+            
             wx.reLaunch({
               url: './measure',
             });
+
+            /*
+            wx.navigateTo({
+              url: './measure',
+            })*/
+
           }
         
       },

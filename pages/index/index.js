@@ -26,7 +26,18 @@ Page({
     wx.navigateTo({
       url: '../measure/userAuth',
     })
+  },
 
+  webViewTesting : () => {
+    wx.navigateTo({
+      url: '../webview/index',
+    })
+  },
+
+  bindTesting: () => {
+    wx.navigateTo({
+      url: '../webview/index?test=1',
+    })
   },
 
   onLoad: function () {

@@ -1,0 +1,4 @@
+<!--pages/testing/index.wxml-->
+<text>Username: {{ UserName }}</text>
+
+

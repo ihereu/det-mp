@@ -1,0 +1,2 @@
+<!--uat.wxml-->
+<web-view src="https://www.detshirts.com/test/measure.php?testvar=1&username={{UserName}}&collar={{collar}}"></web-view>
